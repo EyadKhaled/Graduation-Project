@@ -1,0 +1,61 @@
+(venv) λ python train_model.py --data_dir ./dataset --epochs 30 --batch_size 32
+
+�️  Device: cpu
+�  Dataset: ./dataset
+    Classes (9): Gallstones, Cholecystitis, Gangrenous Cholecystitis, Perforation of GB, Polyps and Cholesterol Crystals, Gallbladder-Wall Thickening, Adenomyomatosis of the GB, Carcinoma, Intraabdominal and Retroperitoneum
+
+  Train: 8553 | Val: 1069 | Test: 1070
+�  Phase 1 — Training classification head only …
+  Epoch   1 | train_loss=1.8744 acc=0.3187 | val_loss=1.6359 acc=0.3938 | 800.8s
+  Epoch   2 | train_loss=1.6410 acc=0.4100 | val_loss=1.4597 acc=0.4790 | 721.6s
+  Epoch   3 | train_loss=1.5427 acc=0.4444 | val_loss=1.3189 acc=0.5500 | 719.2s
+  Epoch   4 | train_loss=1.4272 acc=0.4863 | val_loss=1.2275 acc=0.5809 | 717.0s
+  Epoch   5 | train_loss=1.3607 acc=0.5157 | val_loss=1.1255 acc=0.6062 | 717.6s
+  Epoch   6 | train_loss=1.2944 acc=0.5423 | val_loss=1.0269 acc=0.6455 | 715.0s
+  Epoch   7 | train_loss=1.2545 acc=0.5588 | val_loss=0.9712 acc=0.6642 | 734.4s
+  Epoch   8 | train_loss=1.2311 acc=0.5628 | val_loss=0.9524 acc=0.6876 | 717.2s
+  Epoch   9 | train_loss=1.1723 acc=0.5882 | val_loss=0.8641 acc=0.7072 | 722.7s
+  Epoch  10 | train_loss=1.1320 acc=0.6029 | val_loss=0.8340 acc=0.7138 | 700.7s
+  Epoch  11 | train_loss=1.0991 acc=0.6110 | val_loss=0.7948 acc=0.7362 | 696.7s
+  Epoch  12 | train_loss=1.0797 acc=0.6257 | val_loss=0.7459 acc=0.7587 | 710.3s
+  Epoch  13 | train_loss=1.0612 acc=0.6256 | val_loss=0.7122 acc=0.7727 | 697.0s
+  Epoch  14 | train_loss=1.0213 acc=0.6413 | val_loss=0.6985 acc=0.7689 | 724.1s
+  Epoch  15 | train_loss=1.0053 acc=0.6469 | val_loss=0.6907 acc=0.7727 | 711.6s
+
+�  Phase 2 — Fine-tuning top EfficientNet layers …
+  Epoch   1 | train_loss=0.9245 acc=0.6732 | val_loss=0.5735 acc=0.8110 | 949.8s
+  Epoch   2 | train_loss=0.8651 acc=0.7030 | val_loss=0.5309 acc=0.8297 | 951.8s
+  Epoch   3 | train_loss=0.7983 acc=0.7219 | val_loss=0.4835 acc=0.8522 | 962.7s
+  Epoch   4 | train_loss=0.7684 acc=0.7335 | val_loss=0.4656 acc=0.8587 | 954.5s
+  Epoch   5 | train_loss=0.7203 acc=0.7492 | val_loss=0.4245 acc=0.8672 | 950.0s
+  Epoch   6 | train_loss=0.6918 acc=0.7623 | val_loss=0.3877 acc=0.8877 | 947.1s
+  Epoch   7 | train_loss=0.6508 acc=0.7693 | val_loss=0.3718 acc=0.8859 | 953.6s
+  Epoch   8 | train_loss=0.6347 acc=0.7838 | val_loss=0.3392 acc=0.8980 | 953.0s
+  Epoch   9 | train_loss=0.6212 acc=0.7907 | val_loss=0.3276 acc=0.9008 | 947.4s
+  Epoch  10 | train_loss=0.6024 acc=0.7946 | val_loss=0.3106 acc=0.9083 | 949.0s
+  Epoch  11 | train_loss=0.5759 acc=0.8057 | val_loss=0.2878 acc=0.9167 | 975.8s
+  Epoch  12 | train_loss=0.5521 acc=0.8081 | val_loss=0.2814 acc=0.9149 | 987.3s
+  Epoch  13 | train_loss=0.5358 acc=0.8170 | val_loss=0.2764 acc=0.9186 | 988.5s
+  Epoch  14 | train_loss=0.5250 acc=0.8251 | val_loss=0.2485 acc=0.9280 | 988.0s
+  Epoch  15 | train_loss=0.4933 acc=0.8320 | val_loss=0.2364 acc=0.9233 | 985.5s
+  Epoch  16 | train_loss=0.4869 acc=0.8319 | val_loss=0.2287 acc=0.9326 | 986.5s
+  Epoch  17 | train_loss=0.4752 acc=0.8398 | val_loss=0.2154 acc=0.9317 | 985.6s
+  Epoch  18 | train_loss=0.4336 acc=0.8530 | val_loss=0.2005 acc=0.9411 | 958.2s
+  Epoch  19 | train_loss=0.4318 acc=0.8503 | val_loss=0.1960 acc=0.9411 | 951.1s
+  Epoch  20 | train_loss=0.4154 acc=0.8643 | val_loss=0.1852 acc=0.9448 | 957.4s
+  Epoch  21 | train_loss=0.4145 acc=0.8625 | val_loss=0.1787 acc=0.9439 | 967.9s
+  Epoch  22 | train_loss=0.4168 acc=0.8576 | val_loss=0.1630 acc=0.9504 | 979.2s
+  Epoch  23 | train_loss=0.3790 acc=0.8731 | val_loss=0.1476 acc=0.9570 | 983.9s
+  Epoch  24 | train_loss=0.3806 acc=0.8716 | val_loss=0.1493 acc=0.9579 | 995.3s
+  Epoch  25 | train_loss=0.3586 acc=0.8803 | val_loss=0.1385 acc=0.9645 | 1005.4s
+  Epoch  26 | train_loss=0.3461 acc=0.8846 | val_loss=0.1416 acc=0.9616 | 949.9s
+  Epoch  27 | train_loss=0.3427 acc=0.8859 | val_loss=0.1294 acc=0.9682 | 955.2s
+  Epoch  28 | train_loss=0.3307 acc=0.8904 | val_loss=0.1261 acc=0.9626 | 956.8s
+  Epoch  29 | train_loss=0.3243 acc=0.8893 | val_loss=0.1179 acc=0.9710 | 942.4s
+  Epoch  30 | train_loss=0.3101 acc=0.8987 | val_loss=0.1108 acc=0.9729 | 939.1s
+
+�  Evaluating best model on test set …
+
+✅  Test Accuracy: 0.9729
+�  Weights  → model/gallbladder_model.pth
+    Classes  → model/class_names.json

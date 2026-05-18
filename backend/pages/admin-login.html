@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GallCare · Admin Access</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #0b1f2d 0%, #0d2b45 50%, #0a3030 100%);
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card {
+      background: #fff; border-radius: 20px;
+      padding: 48px 44px; max-width: 400px; width: 90%;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+    }
+    .logo { font-size: 1.5rem; font-weight: 800; color: #0abfaa; margin-bottom: 8px; }
+    .logo span { color: #0b1f2d; }
+    h1 { font-size: 1.4rem; font-weight: 700; color: #0b1f2d; margin-bottom: 6px; }
+    p.sub { color: #7a9ab0; font-size: 0.88rem; margin-bottom: 28px; }
+    label { display: block; font-size: 0.8rem; font-weight: 700; color: #5e7b8c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    input[type="password"] {
+      width: 100%; padding: 12px 16px; border: 1.5px solid #dde4ec;
+      border-radius: 10px; font-size: 0.95rem; outline: none;
+      transition: border-color 0.2s; margin-bottom: 16px;
+      font-family: inherit;
+    }
+    input[type="password"]:focus { border-color: #0abfaa; }
+    input.error { border-color: #ff6b6b !important; }
+    .err-msg {
+      color: #d94f4f; font-size: 0.82rem; background: rgba(255,107,107,0.08);
+      border: 1px solid rgba(255,107,107,0.2); border-radius: 8px;
+      padding: 8px 12px; margin-bottom: 14px; display: none;
+    }
+    .err-msg.show { display: block; }
+    button {
+      width: 100%; padding: 13px; background: linear-gradient(135deg, #0abfaa, #089082);
+      color: white; border: none; border-radius: 50px; font-size: 0.95rem;
+      font-weight: 700; cursor: pointer; font-family: inherit;
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.9; }
+    .lock-icon { font-size: 3rem; text-align: center; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="lock-icon">🔐</div>
+    <div class="logo">Gall<span>Care</span></div>
+    <h1>Admin Area</h1>
+    <p class="sub">Enter the admin password to access the data dashboard.</p>
+    <label for="pwd">Admin Password</label>
+    <div class="err-msg" id="err">Incorrect password. Please try again.</div>
+    <input type="password" id="pwd" placeholder="Enter admin password" />
+    <button id="btn">Enter Dashboard</button>
+  </div>
+  <script src="/js/admin-login.js"></script>
+</body>
+</html>

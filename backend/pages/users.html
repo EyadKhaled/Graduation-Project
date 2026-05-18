@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GallCare · Users</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f0f4f8;
+      color: #1a2b3c;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed; top: 0; left: 0;
+      width: 220px; height: 100vh;
+      background: #0b1f2d;
+      display: flex; flex-direction: column;
+      padding: 28px 0;
+    }
+    .logo {
+      font-size: 1.35rem; font-weight: 800;
+      color: #0abfaa; padding: 0 24px 28px;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: #fff; }
+    .nav-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 24px;
+      color: #7a9ab0; text-decoration: none;
+      font-size: 0.9rem; font-weight: 500;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-link:hover { background: #112233; color: #fff; }
+    .nav-link.active { background: #0abfaa22; color: #0abfaa; border-right: 3px solid #0abfaa; }
+    .nav-icon { font-size: 1.1rem; }
+
+    /* ── Main ── */
+    .main { margin-left: 220px; padding: 36px 40px; }
+
+    .page-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .page-title { font-size: 1.6rem; font-weight: 700; color: #0b1f2d; }
+    .page-subtitle { color: #5e7b8c; font-size: 0.9rem; margin-top: 2px; }
+
+    .badge {
+      background: #0abfaa22; color: #0abfaa;
+      padding: 4px 14px; border-radius: 20px;
+      font-size: 0.85rem; font-weight: 600;
+    }
+
+    /* ── Search bar ── */
+    .toolbar {
+      display: flex; gap: 12px; margin-bottom: 20px;
+    }
+    .search-wrap {
+      position: relative; flex: 1; max-width: 360px;
+    }
+    .search-wrap input {
+      width: 100%; padding: 10px 16px 10px 40px;
+      border: 1px solid #dde4ec; border-radius: 10px;
+      font-size: 0.9rem; background: #fff;
+      outline: none; transition: border 0.15s;
+    }
+    .search-wrap input:focus { border-color: #0abfaa; }
+    .search-icon {
+      position: absolute; left: 13px; top: 50%;
+      transform: translateY(-50%); color: #9fb8c8; font-size: 1rem;
+    }
+
+    /* ── Card / Table ── */
+    .card {
+      background: #fff; border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    thead th {
+      background: #f7fafc;
+      padding: 13px 18px;
+      text-align: left;
+      font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: #7a9ab0;
+      border-bottom: 1px solid #eaf0f6;
+    }
+    tbody tr {
+      border-bottom: 1px solid #f0f4f8;
+      transition: background 0.1s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f7fafc; }
+    td {
+      padding: 14px 18px;
+      font-size: 0.88rem; color: #2c3e50;
+      vertical-align: middle;
+    }
+    .avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: linear-gradient(135deg, #0abfaa, #0577c8);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 0.8rem;
+      margin-right: 10px; vertical-align: middle;
+    }
+    .name-cell { display: flex; align-items: center; }
+    .pill {
+      display: inline-block;
+      padding: 3px 10px; border-radius: 20px;
+      font-size: 0.78rem; font-weight: 600;
+    }
+    .pill-green  { background: #e6faf8; color: #0abfaa; }
+    .pill-orange { background: #fff4e5; color: #e67e22; }
+    .pill-grey   { background: #f0f4f8; color: #7a9ab0; }
+
+    /* ── Empty / Loading / Error states ── */
+    .state-row td {
+      text-align: center; padding: 60px;
+      color: #9fb8c8; font-size: 0.95rem;
+    }
+    .spinner {
+      display: inline-block;
+      width: 28px; height: 28px;
+      border: 3px solid #eaf0f6;
+      border-top-color: #0abfaa;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Footer count ── */
+    .table-footer {
+      padding: 12px 18px;
+      border-top: 1px solid #f0f4f8;
+      font-size: 0.82rem; color: #9fb8c8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="logo">Gall<span>Care</span></div>
+        <a href="/data/users" class="nav-link active"><span class="nav-icon">👥</span> Users</a>
+    <a href="/data/images" class="nav-link"><span class="nav-icon">🖼️</span> Images</a>
+    <a href="/data/medical" class="nav-link"><span class="nav-icon">📋</span> Medical Records</a>
+    <a href="/data/reports" class="nav-link"><span class="nav-icon">🔬</span> AI Reports</a>
+    <a href="/data/logout" class="nav-link" style="margin-top:auto;color:#ff6b6b"><span class="nav-icon">🚪</span> Logout</a>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Users</div>
+        <div class="page-subtitle">All registered accounts</div>
+      </div>
+      <span class="badge" id="count-badge">Loading…</span>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search" placeholder="Search by name or email…" />
+      </div>
+    </div>
+
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Verified</th>
+            <th>Last Login</th>
+            <th>Joined</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <tr class="state-row">
+            <td colspan="6">
+              <div class="spinner"></div><br>Loading users…
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="table-footer" id="table-footer"></div>
+    </div>
+  </main>
+
+  <script src="/js/users.js"></script>
+</body>
+</html>
